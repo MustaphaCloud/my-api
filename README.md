@@ -1,4 +1,4 @@
-# Stage 1 API - Mustapha Nurudeen
+# HNG Stage 1 API - Mustapha Nurudeen
 
 A simple REST API built with Node.js and Express, deployed on an AWS VPS
 with Nginx as a reverse proxy and PM2 for process management.
