@@ -38,3 +38,19 @@ http://54.221.101.76
 - Runtime: Node.js 20 + Express
 - Reverse Proxy: Nginx (port 80 -> port 3000)
 - Process Manager: PM2 (auto-restarts on crash and reboot)
+
+
+## Issues Encountered and Fixed
+
+### Ghost Process Conflict
+After testing the API manually with `node index.js` multiple times,
+a background process remained attached to port 3000 even after Ctrl+C.
+This caused PM2 to be blocked from serving the updated code.
+
+Diagnosed with: sudo lsof -i :3000
+Fixed with: sudo kill -9 <PID>
+
+### Response Time Optimization
+Initial deployment failed the 500ms response time check.
+Fixed by adding proxy_buffering off and tcp_nodelay on to the Nginx config,
+which reduced response times from ~600ms to under 3ms.
